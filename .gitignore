@@ -1,0 +1,5 @@
+venv
+*.pyc
+staticfiles
+settings.conf
+db.sqlite
