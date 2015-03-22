@@ -12,5 +12,5 @@ from profiles import models
 #     list_members = models.Profile.objects.all()
 #     return render(request, 'home.html', {'people': list_members})
 
-def home(request):
+def auth_test(request):
     return render(request, 'auth-test.html', {})

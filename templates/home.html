@@ -8,7 +8,16 @@
     <script src="/static/home.js"></script>
 </head>
 <body>
-    <div><input type="text" name="search" placeholder="Search"></div>
+    <div class="header">
+        <label for="show-menu" class="show-menu"><img src="/static/menu-73x73.png"></label>
+        <input type="checkbox" id="show-menu" role="button">
+        <ul id="menu">
+            <li><a href="/about/">About</a></li>
+            <li><a href="/groups/">Groups</a></li>
+            <li>{% if user.is_authenticated %}<a href="/twitter/logout">Sign Out</a>{% else %}<a href="/twitter/login">Sign In</a>{% endif %}</li>
+        </ul>
+        <input type="text" name="search" placeholder="Search">
+    </div>
     <ul class="people"></ul>
     <div id="loading"></div>
     <script id="profile_template" type="text/x-handlebars-template">{% verbatim %}<li class="short_profile">

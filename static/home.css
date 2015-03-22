@@ -13,11 +13,55 @@ body {
     height: 80px;
     background-image: url(/static/loading.gif);
 }
-input[name=search] {
-    height: 55px;
-    width: 100%;
-    font-size: 25pt;
+
+
+
+.header {
+    margin-left: 73px;
 }
+input[name=search] {
+    height: 73px;
+    width: 100%;
+    font-size: 35pt;
+}
+::-webkit-input-placeholder {
+    font-family: 'lato', 'helvetica neue', Helvetica, sans-serif;
+}
+:-moz-placeholder {
+    font-family: 'lato', 'helvetica neue', Helvetica, sans-serif;
+}
+::-moz-placeholder {
+    font-family: 'lato', 'helvetica neue', Helvetica, sans-serif;
+}
+:-ms-input-placeholder {
+    font-family: 'lato', 'helvetica neue', Helvetica, sans-serif;
+}
+#menu {
+    display: none;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+#menu li a {
+    display: block;
+    text-decoration: none;
+    font-size: 35pt;
+}
+input[type=checkbox]{
+    display: none;
+}
+input[type=checkbox]:checked ~ #menu{
+    display: block;
+}
+.show-menu {
+    float: left;
+    width: 73px;
+    margin-left: -73px;
+}
+
+
+
+
 .people {
     list-style-type: none;
     margin: 0;
@@ -105,6 +149,25 @@ a {
     color: #555555;
 }
 @media all and (min-width: 450px){
+    .show-menu {
+        display: none;
+    }
+    #menu {
+        display: inline-block;
+        float: right;
+    }
+    #menu li {
+        display: inline-block;
+    }
+    #menu li a {
+        font-size: 15pt;
+        padding: 0 3px;
+        line-height: 73px;
+    }
+    .header {
+        margin-left: 0px;
+    }
+
     .short_profile { width: 50%; }
     input[name=search] {width: 50%;}
     .long_profile .large_pic {
@@ -120,6 +183,17 @@ a {
         display: block;
     }
 }
+@media screen and (min-width : 500px){
+    #menu li a {
+        font-size: 16.5pt;
+        padding: 0 5px;
+    }
+}
+@media screen and (min-width : 600px){
+    #menu li a {
+        font-size: 20pt;
+    }
+}
 @media all and (min-width: 800px){
     .short_profile { width: 33%; }
     input[name=search] {width: 33%;}
@@ -131,6 +205,7 @@ a {
 @media all and (min-width: 1150px){
     body { width: 1150px; }
 }
+
 .hidden {
     display: none !important;
 }
