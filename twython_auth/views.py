@@ -75,8 +75,8 @@ def thanks(request, redirect_url=settings.LOGIN_REDIRECT_URL):
             profile.save()
 
     user = authenticate(
-        username=user_info['profile_id'],
-        password=user_info['oauth_token_secret']
+        username=authorized_tokens['user_id'],
+        password=authorized_tokens['oauth_token_secret']
     )
     login(request, user)
     redirect_url = request.session.get('next_url', redirect_url)

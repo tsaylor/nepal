@@ -13,8 +13,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Profile
-        fields = tuple(
-            a.name for a in Profile._meta.fields if not a.name.startswith('_')) + ('pic_url',)
+        fields = ('profile_id', 'screen_name', 'name', 'description', 'pic_url')
 
 
 # ViewSets define the view behavior.
