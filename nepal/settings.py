@@ -69,6 +69,7 @@ INSTALLED_APPS = (
     'profiles',
     'rest_framework',
     'twython_auth',
+    'django_rq',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -140,6 +141,14 @@ REST_FRAMEWORK = {
     ]
 }
 
+# Redis Queue
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+    }
+}
 
 # Opbeat
 

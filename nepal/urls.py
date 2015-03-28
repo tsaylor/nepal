@@ -10,3 +10,7 @@ urlpatterns = patterns('',
     url(r'^api/', include('api.urls', namespace='api')),
     url(r'^admin/', include(admin.site.urls)),
 )
+
+urlpatterns += patterns('',
+    (r'^django-rq/', include('django_rq.urls')),
+)
