@@ -1,7 +1,6 @@
 from django.contrib.auth import authenticate, login, logout as django_logout
 from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from twython import Twython
@@ -32,8 +31,8 @@ def begin_auth(request):
     # Then send them over there, durh.
     request.session['request_token'] = auth_props
 
-    #request.session['next_url'] = request.GET.get('next', settings.LOGIN_REDIRECT_URL)
-    
+    # request.session['next_url'] = request.GET.get('next', settings.LOGIN_REDIRECT_URL)
+
     return HttpResponseRedirect(auth_props['auth_url'])
 
 
