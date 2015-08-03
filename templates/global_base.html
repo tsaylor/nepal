@@ -1,0 +1,21 @@
+{% load staticfiles %}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='//fonts.googleapis.com/css?family=Lora|Lato:300' rel='stylesheet' type='text/css'>
+    <link href="{% static '/static/home.css' %}" rel='stylesheet' type='text/css'>
+    <script src="{% static '/static/jquery-1.11.2.min.js' %}"></script>
+    <script src="{% static '/static/handlebars-v3.0.0.js' %}"></script>
+    <script src="{% static '/static/home.js' %}"></script>
+</head>
+<body>
+    {% block header %}
+    {% endblock %}
+
+    {% block body %}
+    {% endblock %}
+
+    {% block hbs_templates %}
+    {% endblock %}
+</body>
+</html>
