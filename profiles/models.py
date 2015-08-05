@@ -3,6 +3,7 @@ import json
 from django.db import models
 from util.base import BaseModel
 
+
 class Profile(BaseModel):
     user = models.ForeignKey('auth.user', null=True, blank=True)
     profile_id = models.BigIntegerField(db_index=True)
@@ -21,13 +22,12 @@ class Profile(BaseModel):
     # @user_json.setter
     # def user_json(self, value):
     #     self._user_json = json.dumps(value)
-    
+
     def get_pic(self):
         return {'normal': self.profile_image_url,
                 'bigger': self.profile_image_url.replace('_normal', '_bigger'),
                 '200': self.profile_image_url.replace('_normal', '_200x200'),
                 '400': self.profile_image_url.replace('_normal', '_400x400')}
-
 
     @classmethod
     def from_json(cls, data):
@@ -46,6 +46,7 @@ class Status(BaseModel):
     @property
     def status_json(self):
         return json.loads(self._status_json)
+
     @status_json.setter
     def status_json(self, value):
         self._status_json = json.dumps(value)

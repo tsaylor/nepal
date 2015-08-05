@@ -56,6 +56,7 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = env_var('ALLOWED_HOSTS', default='').split(',')
 
+SITE_ID = 1
 
 # Application definition
 
@@ -66,7 +67,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
     'profiles',
+    'groups',
     'rest_framework',
     'twython_auth',
 )
