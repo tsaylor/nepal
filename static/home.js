@@ -42,4 +42,3 @@ function get_profiles_for_search(term) {
         $('#loading').addClass('hidden');
     })
 }
-

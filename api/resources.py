@@ -21,6 +21,10 @@ class ProfileViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         search = self.request.GET.get('search', '')
         qs = self.model.objects.all()
+        if self.request.is_authenticated():
+            user = self.request.user
+            qs = qs.filter(Q(follows=user) |
+                           Q(followed_by=user))
         if search != '':
             qs = qs.filter(Q(name__icontains=search) |
                            Q(description__icontains=search))

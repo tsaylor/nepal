@@ -5,6 +5,7 @@ from util.base import BaseModel
 
 class Profile(BaseModel):
     user = models.ForeignKey('auth.user', null=True, blank=True)
+    follows = models.ManyToManyField('self', related_name='followed_by')
     profile_id = models.BigIntegerField(db_index=True)
     screen_name = models.CharField(max_length=45, db_index=True)
     name = models.CharField(max_length=45)
@@ -30,11 +31,14 @@ class Profile(BaseModel):
 
 
     @classmethod
-    def from_json(cls, data):
+    def from_json(cls, data, unsaved_object=False):
         """ returns (obj, created) for the profile data passed to it """
         field_names = [a.name for a in cls._meta.fields]
         data = dict([(key, data[key]) for key in data if key in field_names])
-        return cls.objects.update_or_create(profile_id=data['profile_id'], defaults=data)
+        if unsaved_object:
+            return cls(**data)
+        else:
+            return cls.objects.update_or_create(profile_id=data['profile_id'], defaults=data)
 
 
 class Status(BaseModel):
