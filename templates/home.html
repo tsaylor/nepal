@@ -1,49 +1,48 @@
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='//fonts.googleapis.com/css?family=Lora|Lato:300' rel='stylesheet' type='text/css'>
-    <link href='/static/home.css' rel='stylesheet' type='text/css'>
-    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="/static/handlebars-v3.0.0.js"></script>
-    <script src="/static/home.js"></script>
-</head>
-<body>
-    <div class="header">
-        <label for="show-menu" class="show-menu"><img src="/static/menu-73x73.png"></label>
-        <input type="checkbox" id="show-menu" role="button">
-        <ul id="menu">
-            <li><a href="/about/">About</a></li>
-            <li><a href="/groups/">Groups</a></li>
-            <li>{% if user.is_authenticated %}<a href="/twitter/logout">Sign Out</a>{% else %}<a href="/twitter/login">Sign In</a>{% endif %}</li>
-        </ul>
-        <input type="text" name="search" placeholder="Search">
-    </div>
-    <ul class="people"></ul>
-    <div id="loading"></div>
-    <script id="profile_template" type="text/x-handlebars-template">{% verbatim %}<li class="short_profile">
-            <img class="small_pic" src='{{pic_url.bigger}}' />
-            <div class="name">{{name}}</div>
-            <a class="username" href='https://twitter.com/{{screen_name}}'>@{{screen_name}}</a>
-            <div class="close_icon">Close</div>
-        </li><li class="long_profile hidden">
-            <img class="large_pic" src='{{pic_url.[200]}}' />
-            <div class="name">{{name}}</div>
-            <a class="username" href='https://twitter.com/{{screen_name}}'>@{{screen_name}}</a>
-            <div class="location">{{location}}</div>
-            <div class="bio">{{description}}</div>
-        </li>{% endverbatim %}</script>
-    <script>
-    $(document).ready(function() {
-        get_profiles_for_search('');
-        $('input[name=search]').on('keyup', function(evt) {
-            delay(function(){
-                term = evt.target.value;
-                if (last_search != term) {
-                    get_profiles_for_search(term);
-                }
-            }, 500 );
-        })
+{% extends "global_base.html" %}
+{% load staticfiles %}
+
+{% block header %}
+<div class="header">
+    <label for="show-menu" class="show-menu"><img src="{% static '/static/menu-73x73.png' %}"></label>
+    <input type="checkbox" id="show-menu" role="button">
+    <ul id="menu">
+        <li><a href="/about/">About</a></li>
+        <li><a href="/groups/">Groups</a></li>
+        <li>{% if user.is_authenticated %}<a href="/twitter/logout">Sign Out</a>{% else %}<a href="/twitter/login">Sign In</a>{% endif %}</li>
+    </ul>
+    <input type="text" name="search" placeholder="Search">
+</div>
+{% endblock %}
+
+{% block hbs_templates %}
+<script id="profile_template" type="text/x-handlebars-template">{% verbatim %}<li class="short_profile">
+        <img class="small_pic" src='{{pic_url.bigger}}' />
+        <div class="name">{{name}}</div>
+        <a class="username" href='https://twitter.com/{{screen_name}}'>@{{screen_name}}</a>
+        <div class="close_icon">Close</div>
+    </li><li class="long_profile hidden">
+        <img class="large_pic" src='{{pic_url.[200]}}' />
+        <div class="name">{{name}}</div>
+        <a class="username" href='https://twitter.com/{{screen_name}}'>@{{screen_name}}</a>
+        <div class="location">{{location}}</div>
+        <div class="bio">{{description}}</div>
+    </li>{% endverbatim %}</script>
+{% endblock %}
+
+{% block body %}
+<ul class="people"></ul>
+<div id="loading"></div>
+<script>
+$(document).ready(function() {
+    get_profiles_for_search('');
+    $('input[name=search]').on('keyup', function(evt) {
+        delay(function(){
+            term = evt.target.value;
+            if (last_search != term) {
+                get_profiles_for_search(term);
+            }
+        }, 500 );
     })
-    </script>
-</body>
-</html>
+})
+</script>
+{% endblock %}
