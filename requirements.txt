@@ -11,6 +11,6 @@ psycopg2==2.6
 requests==2.5.1
 requests-oauthlib==0.4.2
 static3==0.5.1
-djangorestframework==3.0.5
+djangorestframework==3.11.2
 twython
 django-rq-0.7.0
